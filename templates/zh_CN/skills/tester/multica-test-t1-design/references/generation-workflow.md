@@ -2,7 +2,7 @@
 
 > 整合自 `test-case-generator-squad` SKILL v3.5。与 [`design-trace.md`](design-trace.md)、[`test-case-template.md`](test-case-template.md)、[`coverage-checklist.md`](coverage-checklist.md) 配合使用。
 
-## 三阶段交付（Confluence 主副本 → 人工审核 → XMind/JIRA）
+## 三阶段交付（Confluence 主副本 → 人工审核 → XMind/JIRA（可选））
 
 ### 阶段 A：Confluence 维护（T1/T2 默认到此结束）
 
@@ -19,6 +19,7 @@
 状态：待人工审核（Confluence 已更新，未生成 XMind / 未导入 JIRA）
 Confluence: <t1-cases 或 t2-coverage URL>
 确认导入示例口令：「审核通过，导入 JIRA」
+无测试管理平台的团队改用豁免口令：「审核通过，导入豁免」
 ```
 
 ### 阶段 B：人工审核
@@ -27,7 +28,9 @@ Confluence: <t1-cases 或 t2-coverage URL>
 - 人类在 Confluence 改稿 → Tester 更新本地 md → republish
 - Review Pass **≠** 导入授权
 
-### 阶段 C：XMind + JIRA（仅 👤 明确口令后）
+### 阶段 C：XMind + JIRA（可选 · 仅 👤 明确口令后）
+
+> **豁免路径**：团队未接入测试管理平台（无 Jira/TestRail/Zephyr 等）时，**豁免阶段 C**——人类审核通过即收尾，仓库内 `t1-cases.md` + `test_cases.json` 为最终交付物（XMind 可按需生成，非必需），**不报告 BLOCKED**。
 
 用户审核通过并明确下达导入指令后，**必须**依次：
 
@@ -56,6 +59,7 @@ Confluence: <t1-cases 或 t2-coverage URL>
 - 「导入到 JIRA」/「导入 jira」
 - 「继续导入」/「确认导入」/「可以导入」
 - 「按 XX 测试集名称导入」
+- 「审核通过，导入豁免」/「导入豁免」/「豁免导入」/「不用导入」/「无需导入」
 
 含糊表述（「看起来可以」「再看看」）→ **不得**导入，应追问。
 

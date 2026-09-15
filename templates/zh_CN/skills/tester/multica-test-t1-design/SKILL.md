@@ -1,6 +1,6 @@
 ---
 name: multica-test-t1-design
-description: T1 测试设计：AC↔设计追溯、用例模板与覆盖自检、Confluence 主副本、口令后 XMind/JIRA、Apifox 场景与 e2e 规划。整合 ac-design-trace + test-case-generator-squad。
+description: T1 测试设计：AC↔设计追溯、用例模板与覆盖自检、Confluence 主副本、口令后 XMind/JIRA（无平台可豁免）、Apifox 场景与 e2e 规划。整合 ac-design-trace + test-case-generator-squad。
 version: 3.3.0
 metadata:
   orchestrates:
@@ -17,7 +17,7 @@ metadata:
 
 ## 定位
 
-**T1 唯一 skill**：追溯 → 用例 → **Confluence 全文** → 审核 →（👤 口令后）XMind/JIRA；并行 Apifox + 自动化规划。  
+**T1 唯一 skill**：追溯 → 用例 → **Confluence 全文** → 审核 →（👤 口令后）XMind/JIRA（可选，无平台豁免）；并行 Apifox + 自动化规划。  
 **不用于 T2/T3**——T2 见 `multica-test-t2-coverage`；T3 见 `-t3` + `multica-test-orchestration`。
 
 | 层 | Skill | 职责 |
@@ -27,7 +27,7 @@ metadata:
 | 平台 | `multica-platform-*` | 读上游；Apifox 写场景 |
 | 审核 | `multica-review-test` | 审 Confluence；只审不 import |
 
-> **三阶段交付**：阶段 A **仅 Confluence**（**不生成 XMind**）；👤 口令后阶段 C 才 XMind + JIRA。详见 [`references/generation-workflow.md`](references/generation-workflow.md)。
+> **三阶段交付**：阶段 A **仅 Confluence**（**不生成 XMind**）；👤 口令后阶段 C 才 XMind + JIRA；**团队无测试管理平台时豁免阶段 C，审核通过即收尾（不报 BLOCKED）**。详见 [`references/generation-workflow.md`](references/generation-workflow.md)。
 
 ## Platform 协作
 
@@ -92,7 +92,9 @@ python scripts/fetch_all.py --jira-url "http://jira.../browse/PROJ-123" -o ./dat
 - → `multica-review-test`（审 **Confluence**）
 - 交付语：`状态：待人工审核（Confluence 已更新，未 XMind/未导入 JIRA）`
 
-### Step 6 — 阶段 C：XMind + JIRA（👤 明确口令后）
+### Step 6 — 阶段 C：XMind + JIRA（可选 · 👤 明确口令后）
+
+> 豁免路径：无测试管理平台（无 Jira/TestRail/Zephyr）→ 跳过本步，审核通过即收尾，不报 BLOCKED。
 
 1. `generate_xmind.py` ← 最新 JSON（与 Confluence 一致）
 2. `import_to_tracker.py`（团队自备，接口见 `references/import-contract.md`）

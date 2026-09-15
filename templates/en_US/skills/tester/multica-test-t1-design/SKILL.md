@@ -1,6 +1,6 @@
 ---
 name: multica-test-t1-design
-description: T1 test design—AC↔design traceability, case templates and coverage self-check, Confluence master copy, XMind/JIRA after passphrase, Apifox scenarios and e2e planning. Integrates ac-design-trace + test-case-generator-squad.
+description: T1 test design—AC↔design traceability, case templates and coverage self-check, Confluence master copy, XMind/JIRA after passphrase (waivable without platform), Apifox scenarios and e2e planning. Integrates ac-design-trace + test-case-generator-squad.
 version: 3.3.0
 metadata:
   orchestrates:
@@ -17,7 +17,7 @@ metadata:
 
 ## Position
 
-**The only T1 skill**: traceability → cases → **full Confluence** → review → (after 👤 passphrase) XMind/JIRA; parallel Apifox + automation planning.  
+**The only T1 skill**: traceability → cases → **full Confluence** → review → (after 👤 passphrase) XMind/JIRA (optional, waived without platform); parallel Apifox + automation planning.  
 **Not for T2/T3**—T2 see `multica-test-t2-coverage`; T3 see `-t3` + `multica-test-orchestration`.
 
 | Layer | Skill | Responsibility |
@@ -27,7 +27,7 @@ metadata:
 | Platform | `multica-platform-*` | Read upstream; Apifox writes scenarios |
 | Review | `multica-review-test` | Review Confluence; review only, no import |
 
-> **Three-phase delivery**: Phase A is **Confluence only** (**no XMind generated**); only Phase C after 👤 passphrase does XMind + JIRA. Details in [`references/generation-workflow.md`](references/generation-workflow.md).
+> **Three-phase delivery**: Phase A is **Confluence only** (**no XMind generated**); only Phase C after 👤 passphrase does XMind + JIRA; **teams without a test-management platform waive Phase C—review pass closes the task (do not report BLOCKED)**. Details in [`references/generation-workflow.md`](references/generation-workflow.md).
 
 ## Platform Collaboration
 
@@ -92,7 +92,9 @@ By `test-case-template.md` + `generation-workflow.md` + `output-format.md` → l
 - → `multica-review-test` (review **Confluence**)
 - Delivery note: `Status: pending human review (Confluence updated, not XMind / not imported to JIRA)`
 
-### Step 6 — Phase C: XMind + JIRA (after 👤 explicit passphrase)
+### Step 6 — Phase C: XMind + JIRA (optional · after 👤 explicit passphrase)
+
+> Waiver path: no test-management platform (no Jira/TestRail/Zephyr) → skip this step, review pass closes the task, do not report BLOCKED.
 
 1. `generate_xmind.py` ← latest JSON (consistent with Confluence)
 2. `import_to_tracker.py` (team-provided, interface see `references/import-contract.md`)

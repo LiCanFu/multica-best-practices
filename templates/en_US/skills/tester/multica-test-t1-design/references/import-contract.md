@@ -1,5 +1,7 @@
 # T1 用例导入契约（import_to_tracker.py）
 
+> **豁免条款（默认生效）**：团队**未接入测试管理平台**（无 Jira / TestRail / Zephyr 等）时，**豁免平台导入**——人类审核通过即收尾，仓库内 `t1-cases.md` + `test_cases.json`（+ 可选 XMind）即为最终交付物。以下契约**仅当**团队已接入平台、且收到明确导入口令时适用。
+
 > 本 skill **不随附**批量导入脚本——它强绑定具体测试管理平台（Jira 用例插件 / TestRail / Zephyr / 自研平台…），无法通用化。
 > 团队按所用平台自行实现 `import_to_tracker.py`，**满足以下契约与硬约束**即可与 T1 流程无缝衔接。
 
