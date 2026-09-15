@@ -187,7 +187,8 @@ def ensure_target_skills(
             resolved[name] = "dry-run"
             continue
         try:
-            created = client.create_skill(workspace, payload) or {}
+            created, _ = client.create_skill(workspace, payload)
+            created = created or {}
             skill_id = created.get("id") or ""
             print(f"[CREATE] skill {name} ({skill_id or '?'})")
             if skill_id:

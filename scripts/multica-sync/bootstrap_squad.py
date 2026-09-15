@@ -199,7 +199,8 @@ def ensure_skills(
                 )
                 print(f"[UPDATE] skill {name} ({skill_id}, {file_count} files)")
             else:
-                created = client.create_skill(workspace, payload) or {}
+                created, _ = client.create_skill(workspace, payload)
+                created = created or {}
                 skill_id = created.get("id") or ""
                 print(f"[CREATE] skill {name} ({skill_id or '?'} , {file_count} files)")
             if skill_id:
